@@ -18,6 +18,7 @@ import SuperSaverPage from './components/SuperSaverPage';
 import BoardingPage from './components/BoardingPage';
 import CartModal from './components/CartModal';
 import Footer from './components/Footer';
+import BoardingPopup from './components/BoardingPopup';
 import TreatsToysCTA from './components/TreatsToysCTA';
 import BubbleCursor from './components/BubbleCursor';
 import BackgroundDecor from './components/BackgroundDecor';
@@ -47,6 +48,7 @@ const App: React.FC = () => {
   const [saverConfig, setSaverConfig] = useState<{pet: PetType, size: SizeType, coat: CoatType} | null>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isBoardingPopupOpen, setIsBoardingPopupOpen] = useState(false);
 
   // Initialize cart from localStorage
   useEffect(() => {
@@ -71,6 +73,19 @@ const App: React.FC = () => {
     }, 2500);
     return () => clearTimeout(timer);
   }, []);
+
+  // Show boarding popup on initial enter (after preloader loading sets to false)
+  useEffect(() => {
+    if (!loading) {
+      const hasSeen = sessionStorage.getItem('snip_style_boarding_popup_seen');
+      if (!hasSeen) {
+        const popupTimer = setTimeout(() => {
+          setIsBoardingPopupOpen(true);
+        }, 1200);
+        return () => clearTimeout(popupTimer);
+      }
+    }
+  }, [loading]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -99,7 +114,10 @@ const App: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <Hero onServiceClick={() => setActivePage('services')} />
+            <Hero 
+              onServiceClick={() => setActivePage('services')} 
+              onBoardingClick={() => setActivePage('boarding')} 
+            />
             <TrustStrip />
             <Services onDetailClick={() => setActivePage('services')} setActivePage={setActivePage} />
             
@@ -166,7 +184,12 @@ const App: React.FC = () => {
       case 'pack': return <MeetThePackPage key="pack" />;
       case 'saver': return <SuperSaverPage key="saver" addToCart={addToCart} initialConfig={saverConfig} />;
       case 'boarding': return <BoardingPage key="boarding" addToCart={addToCart} setActivePage={setActivePage} />;
-      default: return <Hero onServiceClick={() => setActivePage('services')} />;
+      default: return (
+        <Hero 
+          onServiceClick={() => setActivePage('services')} 
+          onBoardingClick={() => setActivePage('boarding')} 
+        />
+      );
     }
   };
 
@@ -207,6 +230,19 @@ const App: React.FC = () => {
           />
         )}
       </AnimatePresence>
+
+      <BoardingPopup 
+        isOpen={isBoardingPopupOpen}
+        onClose={() => {
+          setIsBoardingPopupOpen(false);
+          sessionStorage.setItem('snip_style_boarding_popup_seen', 'true');
+        }}
+        onSeeNow={() => {
+          setIsBoardingPopupOpen(false);
+          sessionStorage.setItem('snip_style_boarding_popup_seen', 'true');
+          setActivePage('boarding');
+        }}
+      />
 
       <TreatsToysCTA />
 

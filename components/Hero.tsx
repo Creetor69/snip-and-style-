@@ -5,6 +5,7 @@ import AnimatedText from './AnimatedText';
 
 interface HeroProps {
   onServiceClick: () => void;
+  onBoardingClick: () => void;
 }
 
 const InteractivePet: React.FC = React.memo(() => {
@@ -154,7 +155,7 @@ const InteractivePet: React.FC = React.memo(() => {
   );
 });
 
-const Hero: React.FC<HeroProps> = ({ onServiceClick }) => {
+const Hero: React.FC<HeroProps> = ({ onServiceClick, onBoardingClick }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -218,14 +219,41 @@ const Hero: React.FC<HeroProps> = ({ onServiceClick }) => {
 
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10">
         <div className="flex flex-col gap-10 z-10 text-center lg:text-left">
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white shadow-xl w-fit mx-auto lg:mx-0 border border-[#111811]/5"
-          >
-            <div className="size-2 bg-[#FF8200] rounded-full animate-ping" />
-            <span className="text-[#111811] text-[10px] font-black uppercase tracking-[0.2em]">The Ultimate Pet Styling Destination</span>
-          </motion.div>
+          <div className="space-y-4">
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white shadow-xl w-fit mx-auto lg:mx-0 border border-[#111811]/5"
+            >
+              <div className="size-2 bg-[#FF8200] rounded-full animate-ping" />
+              <span className="text-[#111811] text-[10px] font-black uppercase tracking-[0.2em]">The Ultimate Pet Styling Destination</span>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }} 
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              onClick={onBoardingClick}
+              className="group cursor-pointer bg-gradient-to-r from-[#8B6B4A]/10 to-[#C97B63]/10 hover:from-[#8B6B4A]/15 hover:to-[#C97B63]/15 border border-[#8B6B4A]/15 p-4 rounded-2xl flex items-center justify-between gap-4 max-w-lg mx-auto lg:mx-0 transition-all shadow-md active:scale-[0.98]"
+            >
+              <div className="flex items-center gap-3">
+                <div className="size-10 rounded-xl bg-[#8B6B4A] text-white flex items-center justify-center shrink-0 shadow-lg shadow-[#8B6B4A]/20">
+                  <span className="material-symbols-outlined text-lg animate-bounce">hotel</span>
+                </div>
+                <div className="text-left">
+                  <div className="flex items-center gap-1.5 leading-none">
+                    <span className="text-[8px] font-black uppercase tracking-widest text-white bg-[#8B6B4A] px-1.5 py-0.5 rounded leading-none">NEW OPENING</span>
+                    <span className="size-1.5 bg-[#14d220] rounded-full animate-pulse" />
+                  </div>
+                  <h4 className="text-[11px] font-black tracking-tight text-[#111811] mt-1">Luxury Pet Boarding is now open! Check it out 🐾</h4>
+                  <p className="text-[9px] text-[#111811]/60 font-semibold leading-none mt-0.5">Explore 5-star suites and reserve your pet's vacation</p>
+                </div>
+              </div>
+              <div className="size-7 rounded-full bg-white text-[#111811] flex items-center justify-center shrink-0 border border-black/5 shadow group-hover:bg-[#FF8200] group-hover:text-white transition-all">
+                <span className="material-symbols-outlined text-xs">arrow_forward</span>
+              </div>
+            </motion.div>
+          </div>
           
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4">
