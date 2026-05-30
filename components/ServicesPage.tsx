@@ -74,17 +74,17 @@ const ServicesPage: React.FC<ServicesPageProps> = ({
   };
 
   const getFurryFreshPrice = () => {
-    if (size === 'small') return '₹499';
-    if (size === 'medium') return '₹599';
-    if (size === 'large') return '₹699';
-    return '₹399'; // Toy
+    if (size === 'small') return '₹624';
+    if (size === 'medium') return '₹749';
+    if (size === 'large') return '₹874';
+    return '₹499'; // Toy
   };
 
   const getSpecialPackagePrice = () => {
-    if (size === 'small') return '₹599';
-    if (size === 'medium') return '₹699';
-    if (size === 'large') return '₹799';
-    return '₹599';
+    if (size === 'small') return '₹749';
+    if (size === 'medium') return '₹874';
+    if (size === 'large') return '₹999';
+    return '₹749';
   };
 
   const dogPackages = [
@@ -112,7 +112,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({
     { 
       id: 'dog-style', 
       name: 'Style Your Pet', 
-      price: '₹1,399', 
+      price: '₹1,749', 
       icon: 'styler', 
       desc: 'Professional full body trimming and face styling.', 
       category: 'main',
@@ -122,7 +122,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({
     { 
       id: 'dog-full-grooming', 
       name: 'Full Grooming', 
-      price: '₹1,999', 
+      price: '₹2,499', 
       icon: 'content_cut', 
       desc: 'The ultimate head-to-tail therapeutic experience.', 
       category: 'main',
@@ -132,22 +132,22 @@ const ServicesPage: React.FC<ServicesPageProps> = ({
   ];
 
   const dogAddons = [
-    { id: 'addon-medicated', name: 'Medicated Bath', price: '₹199', icon: 'medical_services', desc: 'Therapeutic bath for skin irritations.', category: 'addon', benefits: ['Medicated Shampoo', 'Skin Soothing'] },
-    { id: 'addon-massage', name: 'Body Massage', price: '₹399', icon: 'spa', desc: 'Relaxing full body massage.', category: 'addon', benefits: ['Full Body Massage', 'Muscle Relaxation'] },
-    { id: 'addon-dry-bath', name: 'Dry Bathing', price: '₹299', icon: 'air', desc: 'Waterless refresh for quick cleaning.', category: 'addon', benefits: ['Waterless Refresh', 'Coat Deodorizing'] },
-    { id: 'addon-sanitary-maintenance', name: 'Sanitary & Maintenance', price: '₹399', icon: 'sanitizer', desc: 'Combined hygiene trim, nail clipping, and more.', category: 'addon', benefits: ['Hygiene Trim', 'Nail Clipping', 'Ear Cleaning', 'Paw Pad Trim'] },
-    { id: 'addon-ear-eye', name: 'Ear & Eye Cleaning', price: '₹99', icon: 'visibility', desc: 'Gentle cleaning for sensitive areas.', category: 'addon', benefits: ['Ear Wax Removal', 'Eye Tear Stain Cleaning'] },
-    { id: 'addon-deshedding', name: 'Deshedding', price: '₹499', icon: 'brush', desc: 'Reduces shedding significantly.', category: 'addon', benefits: ['Undercoat Removal', 'Special Deshedding Tool'] },
-    { id: 'addon-dematting', name: 'Dematting', price: '₹399', icon: 'brush', desc: 'Pain-free removal of fur mats.', category: 'addon', benefits: ['Mat Removal', 'Coat Detangling'] },
-    { id: 'addon-teeth', name: 'Teeth Brushing', price: '₹149', icon: 'dentistry', desc: 'Fresh breath and oral hygiene.', category: 'addon', benefits: ['Plaque Removal', 'Mouth Spray'] },
-    { id: 'addon-paws-brush', name: 'Paw Relaxation', price: '₹99', icon: 'pets', desc: 'Deep cleaning for paws.', category: 'addon', benefits: ['Paw Cleaning', 'Paw Massage'] },
+    { id: 'addon-medicated', name: 'Medicated Bath', price: '₹249', icon: 'medical_services', desc: 'Therapeutic bath for skin irritations.', category: 'addon', benefits: ['Medicated Shampoo', 'Skin Soothing'] },
+    { id: 'addon-massage', name: 'Body Massage', price: '₹499', icon: 'spa', desc: 'Relaxing full body massage.', category: 'addon', benefits: ['Full Body Massage', 'Muscle Relaxation'] },
+    { id: 'addon-dry-bath', name: 'Waterless Bath', price: '₹374', icon: 'air', desc: 'Waterless refresh for quick cleaning.', category: 'addon', benefits: ['Waterless Bath', 'Coat Deodorizing'] },
+    { id: 'addon-sanitary-maintenance', name: 'Sanitary & Maintenance', price: '₹499', icon: 'sanitizer', desc: 'Combined hygiene trim, nail clipping, and more.', category: 'addon', benefits: ['Hygiene Trim', 'Nail Clipping', 'Ear Cleaning', 'Paw Pad Trim'] },
+    { id: 'addon-ear-eye', name: 'Ear & Eye Cleaning', price: '₹124', icon: 'visibility', desc: 'Gentle cleaning for sensitive areas.', category: 'addon', benefits: ['Ear Wax Removal', 'Eye Tear Stain Cleaning'] },
+    { id: 'addon-deshedding', name: 'Deshedding', price: '₹624', icon: 'brush', desc: 'Reduces shedding significantly.', category: 'addon', benefits: ['Undercoat Removal', 'Special Deshedding Tool'] },
+    { id: 'addon-dematting', name: 'Dematting', price: '₹499', icon: 'brush', desc: 'Pain-free removal of fur mats.', category: 'addon', benefits: ['Mat Removal', 'Coat Detangling'] },
+    { id: 'addon-teeth', name: 'Teeth Brushing', price: '₹186', icon: 'dentistry', desc: 'Fresh breath and oral hygiene.', category: 'addon', benefits: ['Plaque Removal', 'Mouth Spray'] },
+    { id: 'addon-paws-brush', name: 'Paw Relaxation', price: '₹124', icon: 'pets', desc: 'Deep cleaning for paws.', category: 'addon', benefits: ['Paw Cleaning', 'Paw Massage'] },
   ];
 
   const catPackages = [
     { 
       id: 'cat-furry-fresh', 
       name: 'Furry Fresh', 
-      price: '₹599', 
+      price: '₹749', 
       icon: 'soap', 
       desc: 'Essential hygiene care for a clean and happy pet.', 
       category: 'main',
@@ -158,7 +158,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({
     { 
       id: 'cat-special', 
       name: 'Special Package', 
-      price: '₹699', 
+      price: '₹874', 
       icon: 'star', 
       desc: 'Enhanced care with extra hygiene and dental focus.', 
       category: 'main',
@@ -168,7 +168,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({
     { 
       id: 'cat-style', 
       name: 'Style Your Pet', 
-      price: '₹1,399', 
+      price: '₹1,749', 
       icon: 'styler', 
       desc: 'Professional full body trimming and face styling.', 
       category: 'main',
@@ -178,7 +178,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({
     { 
       id: 'cat-full', 
       name: 'Full Grooming', 
-      price: '₹1,999',
+      price: '₹2,499',
       icon: 'content_cut', 
       desc: 'Full hygiene, deshedding and cleaning.', 
       category: 'main',
@@ -188,22 +188,22 @@ const ServicesPage: React.FC<ServicesPageProps> = ({
   ];
 
   const catAddons = [
-    { id: 'cat-addon-medicated', name: 'Medicated Bath', price: '₹199', icon: 'medical_services', desc: 'Therapeutic bath for skin irritations.', category: 'addon', benefits: ['Medicated Shampoo', 'Skin Soothing'] },
-    { id: 'cat-addon-massage', name: 'Body Massage', price: '₹399', icon: 'spa', desc: 'Relaxing full body massage.', category: 'addon', benefits: ['Full Body Massage', 'Muscle Relaxation'] },
-    { id: 'cat-addon-dry-bath', name: 'Dry Bathing', price: '₹299', icon: 'air', desc: 'Waterless refresh for quick cleaning.', category: 'addon', benefits: ['Waterless Refresh', 'Coat Deodorizing'] },
-    { id: 'cat-addon-sanitary-maintenance', name: 'Sanitary & Maintenance', price: '₹399', icon: 'sanitizer', desc: 'Combined hygiene trim, nail clipping, and more.', category: 'addon', benefits: ['Hygiene Trim', 'Nail Clipping', 'Ear Cleaning', 'Paw Pad Trim'] },
-    { id: 'cat-addon-ear-eye', name: 'Ear & Eye Cleaning', price: '₹99', icon: 'visibility', desc: 'Gentle cleaning for sensitive areas.', category: 'addon', benefits: ['Ear Wax Removal', 'Eye Tear Stain Cleaning'] },
-    { id: 'cat-addon-deshedding', name: 'Deshedding', price: '₹499', icon: 'brush', desc: 'Reduces shedding significantly.', category: 'addon', benefits: ['Undercoat Removal', 'Special Deshedding Tool'] },
-    { id: 'cat-addon-dematting', name: 'Dematting', price: '₹399', icon: 'brush', desc: 'Pain-free removal of fur mats.', category: 'addon', benefits: ['Mat Removal', 'Coat Detangling'] },
-    { id: 'cat-addon-teeth', name: 'Teeth Brushing', price: '₹149', icon: 'dentistry', desc: 'Fresh breath and oral hygiene.', category: 'addon', benefits: ['Plaque Removal', 'Mouth Spray'] },
-    { id: 'cat-addon-paws-brush', name: 'Paw Relaxation', price: '₹99', icon: 'pets', desc: 'Deep cleaning for paws.', category: 'addon', benefits: ['Paw Cleaning', 'Paw Massage'] },
+    { id: 'cat-addon-medicated', name: 'Medicated Bath', price: '₹249', icon: 'medical_services', desc: 'Therapeutic bath for skin irritations.', category: 'addon', benefits: ['Medicated Shampoo', 'Skin Soothing'] },
+    { id: 'cat-addon-massage', name: 'Body Massage', price: '₹499', icon: 'spa', desc: 'Relaxing full body massage.', category: 'addon', benefits: ['Full Body Massage', 'Muscle Relaxation'] },
+    { id: 'cat-addon-dry-bath', name: 'Waterless Bath', price: '₹374', icon: 'air', desc: 'Waterless refresh for quick cleaning.', category: 'addon', benefits: ['Waterless Bath', 'Coat Deodorizing'] },
+    { id: 'cat-addon-sanitary-maintenance', name: 'Sanitary & Maintenance', price: '₹499', icon: 'sanitizer', desc: 'Combined hygiene trim, nail clipping, and more.', category: 'addon', benefits: ['Hygiene Trim', 'Nail Clipping', 'Ear Cleaning', 'Paw Pad Trim'] },
+    { id: 'cat-addon-ear-eye', name: 'Ear & Eye Cleaning', price: '₹124', icon: 'visibility', desc: 'Gentle cleaning for sensitive areas.', category: 'addon', benefits: ['Ear Wax Removal', 'Eye Tear Stain Cleaning'] },
+    { id: 'cat-addon-deshedding', name: 'Deshedding', price: '₹624', icon: 'brush', desc: 'Reduces shedding significantly.', category: 'addon', benefits: ['Undercoat Removal', 'Special Deshedding Tool'] },
+    { id: 'cat-addon-dematting', name: 'Dematting', price: '₹499', icon: 'brush', desc: 'Pain-free removal of fur mats.', category: 'addon', benefits: ['Mat Removal', 'Coat Detangling'] },
+    { id: 'cat-addon-teeth', name: 'Teeth Brushing', price: '₹186', icon: 'dentistry', desc: 'Fresh breath and oral hygiene.', category: 'addon', benefits: ['Plaque Removal', 'Mouth Spray'] },
+    { id: 'cat-addon-paws-brush', name: 'Paw Relaxation', price: '₹124', icon: 'pets', desc: 'Deep cleaning for paws.', category: 'addon', benefits: ['Paw Cleaning', 'Paw Massage'] },
   ];
 
   const quickServices = [
     {
       id: 'quick-sanitary-maintenance',
       name: 'Sanitary & Maintenance Care',
-      price: '₹399',
+      price: '₹499',
       icon: 'sanitizer',
       desc: 'Combined hygiene trim, nail clipping, ear cleaning, and paw pad trim.',
       benefits: ['Hygiene Trim', 'Nail Clipping', 'Ear Cleaning', 'Paw Pad Trim']
@@ -211,18 +211,18 @@ const ServicesPage: React.FC<ServicesPageProps> = ({
     {
       id: 'quick-face',
       name: 'Face Trim',
-      price: serviceMode === 'walk-in' ? '₹399' : '₹500',
+      price: serviceMode === 'walk-in' ? '₹499' : '₹625',
       icon: 'face_retouching_natural',
       desc: 'Neatens hair around eyes and mouth for a clean look.',
       benefits: ['Eye Area Trim', 'Mouth Area Trim', 'Beard Shaping']
     },
     {
       id: 'quick-dry',
-      name: 'Dry Grooming',
-      price: serviceMode === 'walk-in' ? '₹599' : '₹750',
+      name: 'Waterless Bath',
+      price: serviceMode === 'walk-in' ? '₹749' : '₹938',
       icon: 'air',
-      desc: 'Waterless shampoo & brush-out to refresh the coat.',
-      benefits: ['Waterless Shampoo', 'Deep Brushing', 'Deodorizing Spray']
+      desc: 'Waterless bath & brush-out to refresh the coat.',
+      benefits: ['Waterless Bath', 'Deep Brushing', 'Deodorizing Spray']
     },
   ];
 

@@ -14,6 +14,7 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
   // Booking details
   const [petType, setPetType] = useState<'dog' | 'cat' | null>(null);
   const [selectedSize, setSelectedSize] = useState<'small' | 'medium' | 'large' | null>(null);
+  const [catNeuter, setCatNeuter] = useState<'neutered' | 'non-neutered'>('neutered');
   
   // Custom Date Picker State
   const today = new Date();
@@ -29,6 +30,7 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
 
   // Treat additions
   const [selectedToys, setSelectedToys] = useState<boolean>(false);
+  const [selectedMedication, setSelectedMedication] = useState<boolean>(false);
 
   // Simulated Loader for immersive experience
   useEffect(() => {
@@ -69,43 +71,52 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
   }, []);
 
   const getPricePerDay = () => {
-    if (petType === 'cat') return 899;
-    if (selectedSize === 'small') return 799;
-    if (selectedSize === 'medium') return 1199;
-    if (selectedSize === 'large') return 1499;
+    if (petType === 'cat') {
+      return catNeuter === 'neutered' ? 625 : 750;
+    }
+    if (selectedSize === 'small') return 625;
+    if (selectedSize === 'medium') return 750;
+    if (selectedSize === 'large') return 875;
     return 0;
   };
 
   const getSubtotal = () => {
     const rate = getPricePerDay();
     let sub = rate * daysCount;
-    if (selectedToys) sub += 299;
+    if (selectedToys) sub += 186;
+    if (selectedMedication) sub += 374;
     return sub;
   };
 
-  const getTax = () => {
-    return Math.round(getSubtotal() * 0.18);
-  };
-
   const getTotal = () => {
-    return getSubtotal() + getTax();
+    return getSubtotal();
   };
 
   const handleBookingConfirm = () => {
     if (!petType || (petType === 'dog' && !selectedSize)) return;
     if (daysCount <= 0) return;
 
-    const detailsStr = `${petType === 'dog' ? `Dog (${selectedSize})` : 'Cat'} Stay • ${daysCount} Days (${checkIn} to ${checkOut})${selectedToys ? ' + Toy bundle' : ''}`;
+    let benefitText = "";
+    if (daysCount >= 15) benefitText = " [Free Full Package Benefit]";
+    else if (daysCount >= 8) benefitText = " [Free Special Package Benefit]";
+    else if (daysCount >= 4) benefitText = " [Free Furry Fresh Benefit]";
+
+    const addOnstext = [
+      selectedToys ? 'Toy bundle' : '',
+      selectedMedication ? 'Medication care' : ''
+    ].filter(Boolean).join(' + ');
+
+    const detailsStr = `${petType === 'dog' ? `Dog (${selectedSize})` : `Cat (${catNeuter})`} Stay • ${daysCount} Days (${checkIn} to ${checkOut})${addOnstext ? ` + ${addOnstext}` : ''}${benefitText}`;
 
     const boardingItem: CartItem = {
       id: `boarding-${Date.now()}`,
-      name: `Luxury Boarding Suite`,
+      name: `Comfortable Boarding Suite`,
       price: `₹${getTotal().toLocaleString()}`,
       details: detailsStr,
       icon: 'hotel',
     };
 
-    addToCart(boardingItem, true);
+    addToCart(boardingItem);
   };
 
   const galleryImages = [
@@ -120,7 +131,7 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
   const experienceCards = [
     { title: '24/7 Supervision', desc: 'Continuous monitored care by trained wellness professionals.', icon: 'visibility' },
     { title: 'Daily Play & Exercise', desc: 'Indoors/outdoors playtime matching your dog\'s stamina.', icon: 'sports_tennis' },
-    { title: 'Ultra-Soft Bedding', desc: 'Orthopedic memory foam mattresses with custom temperature controls.', icon: 'hotel' },
+    { title: 'WhatsApp Group Updates', desc: 'Direct photos of walks, play sessions, and medicine feedings sent in real-time.', icon: 'chat' },
     { title: 'Hygienic Environment', desc: 'Medical-grade zero-dust air purification filtration.', icon: 'sanitizer' }
   ];
 
@@ -152,7 +163,7 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
           </motion.div>
 
           <h2 className="text-xl font-serif text-[#2B2B2B] uppercase tracking-wider mb-2">Preparing Your Pet’s Stay…</h2>
-          <p className="text-xs text-[#666666] tracking-widest uppercase mb-6 font-semibold">Snip & Style Luxury Resort</p>
+          <p className="text-xs text-[#666666] tracking-widest uppercase mb-6 font-semibold">Snip & Style Comfortable Boarding</p>
 
           <div className="w-64 h-1.5 bg-[#E8DCCB]/30 rounded-full overflow-hidden relative shadow-inner mb-4">
             <motion.div 
@@ -177,12 +188,12 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
       animate={{ opacity: 1 }}
       className="bg-[#FAF7F2] text-[#2B2B2B] font-sans antialiased selection:bg-[#E8DCCB]"
     >
-      {/* Dynamic Hero Section with Luxury Overlay */}
+      {/* Dynamic Hero Section with Cozier Overlay */}
       <section className="relative min-h-[90vh] flex items-center px-6 py-12 md:py-24 overflow-hidden bg-[#FAF7F2]">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&q=80&w=1600" 
-            alt="Luxury Pet Kennel resort interior" 
+            alt="Comfortable Pet Kennel boarding interior" 
             className="w-full h-full object-cover opacity-15 filter sepia-[0.1]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#FAF7F2] via-[#FAF7F2]/90 to-transparent" />
@@ -193,11 +204,11 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
           <div className="md:col-span-7 flex flex-col text-left space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#E8DCCB]/50 border border-[#8B6B4A]/20 rounded-full w-fit">
               <span className="material-symbols-outlined text-xs text-[#8B6B4A]">verified</span>
-              <span className="text-[9px] font-black tracking-widest uppercase text-[#8B6B4A]">High-End Pet Lodging</span>
+              <span className="text-[9px] font-black tracking-widest uppercase text-[#8B6B4A]">Comfortable Pet Lodging</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#2B2B2B] leading-[1.05] tracking-tight">
-              Luxury Boarding <br />
+              Comfortable Boarding <br />
               <span className="font-sans font-black italic text-[#C97B63] block mt-1">For Pets Who Deserve Comfort</span>
             </h1>
 
@@ -381,15 +392,77 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
                       <button
                         key={sz}
                         onClick={() => setSelectedSize(sz)}
-                        className={`p-4 rounded-xl border-2 transition-all text-left group flex flex-col ${selectedSize === sz ? 'bg-[#8B6B4A]/5 border-[#8B6B4A]' : 'border-[#E8DCCB]/40 hover:border-[#8B6B4A]/30 bg-white'}`}
+                        className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col justify-between ${selectedSize === sz ? 'bg-[#8B6B4A]/5 border-[#8B6B4A]' : 'border-[#E8DCCB]/40 hover:border-[#8B6B4A]/30 bg-white'}`}
                       >
-                        <span className="material-symbols-outlined text-xl text-[#8B6B4A] mb-2">pets</span>
-                        <span className="text-[10px] font-black uppercase tracking-wider block leading-none">{sz}</span>
-                        <span className="text-[8px] text-[#666666] leading-relaxed mt-1 block">
-                          {sz === 'small' ? '< 10kg Spaniels' : sz === 'medium' ? '10-25kg Labs' : '> 25kg Shepherds'}
-                        </span>
+                        <div>
+                          <span className="material-symbols-outlined text-xl text-[#8B6B4A] mb-2">pets</span>
+                          <span className="text-[10px] font-black uppercase tracking-wider block leading-none">{sz}</span>
+                          <span className="text-[8px] text-[#666666] leading-relaxed mt-1 block">
+                            {sz === 'small' ? '< 10kg Spaniels' : sz === 'medium' ? '10-25kg Labs' : '> 25kg Shepherds'}
+                          </span>
+                        </div>
+                        <div className="mt-3 text-right">
+                          {sz === 'small' ? (
+                            <div className="flex flex-col items-end leading-none">
+                              <span className="text-[8px] text-[#666666] line-through">₹750</span>
+                              <span className="text-xs font-black text-[#8B6B4A]">₹625 / day</span>
+                            </div>
+                          ) : sz === 'medium' ? (
+                            <span className="text-xs font-black text-[#8B6B4A]">₹750 / day</span>
+                          ) : (
+                            <span className="text-xs font-black text-[#8B6B4A]">₹875 / day</span>
+                          )}
+                        </div>
                       </button>
                     ))}
+                  </div>
+
+                  {/* Dog inclusive features highlight */}
+                  <div className="bg-[#8B6B4A]/5 border border-[#8B6B4A]/10 rounded-2xl p-4 flex items-center gap-3">
+                    <span className="material-symbols-outlined text-xl text-[#8B6B4A] animate-pulse">check_box</span>
+                    <p className="text-[10px] font-black uppercase text-[#8B6B4A] tracking-wider">
+                      🐶 dog stays: Inclusive of premium foods, tasty treats, and 2 customized walks per day!
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Step 2: Select Neuter Status (If cat) */}
+              {petType === 'cat' && (
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <span className="size-6 rounded-full bg-[#E8DCCB] flex items-center justify-center text-[10px] font-black">2</span>
+                    <h3 className="text-xs font-black tracking-widest uppercase font-sans">Select Neuter Status</h3>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <button
+                      onClick={() => setCatNeuter('neutered')}
+                      className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col justify-between ${catNeuter === 'neutered' ? 'bg-[#8B6B4A]/5 border-[#8B6B4A]' : 'border-[#E8DCCB]/40 hover:border-[#8B6B4A]/30 bg-white'}`}
+                    >
+                      <div>
+                        <span className="material-symbols-outlined text-xl text-[#8B6B4A] mb-2">check_circle</span>
+                        <span className="text-[10px] font-black uppercase tracking-wider block leading-none">Neutered / Spayed Cat</span>
+                        <span className="text-[8px] text-[#666666] leading-relaxed mt-1 block">
+                          Cat is sterilized or neutered
+                        </span>
+                      </div>
+                      <span className="text-xs font-black text-[#8B6B4A] mt-3">₹625 / day</span>
+                    </button>
+
+                    <button
+                      onClick={() => setCatNeuter('non-neutered')}
+                      className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col justify-between ${catNeuter === 'non-neutered' ? 'bg-[#C97B63]/5 border-[#C97B63]' : 'border-[#E8DCCB]/40 hover:border-[#C97B63]/30 bg-white'}`}
+                    >
+                      <div>
+                        <span className="material-symbols-outlined text-xl text-[#C97B63] mb-2">pending</span>
+                        <span className="text-[10px] font-black uppercase tracking-wider block leading-none">Non-Neutered Cat</span>
+                        <span className="text-[8px] text-[#666666] leading-relaxed mt-1 block">
+                          Cat is intact or not neutered
+                        </span>
+                      </div>
+                      <span className="text-xs font-black text-[#C97B63] mt-3">₹750 / day</span>
+                    </button>
                   </div>
                 </div>
               )}
@@ -434,7 +507,7 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
               <div className="space-y-4 pt-1 border-t border-[#8B6B4A]/10">
                 <h4 className="text-[10px] font-black tracking-widest uppercase text-[#8B6B4A]">Resort Extra Comfort Additions</h4>
                 
-                <div className="max-w-md">
+                <div className="grid sm:grid-cols-2 gap-4">
                   {/* Toy Pack */}
                   <div 
                     onClick={() => setSelectedToys(!selectedToys)}
@@ -445,7 +518,21 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
                     </div>
                     <div>
                       <h5 className="text-[11px] font-black uppercase tracking-tight">Active Toy Bundle</h5>
-                      <p className="text-[9px] text-[#666666] leading-tight">Chews, plushies & interactive toys (+₹299)</p>
+                      <p className="text-[9px] text-[#666666] leading-tight">Chews, plushies & interactive toys (+₹186)</p>
+                    </div>
+                  </div>
+
+                  {/* Medication Care */}
+                  <div 
+                    onClick={() => setSelectedMedication(!selectedMedication)}
+                    className={`p-4 border-2 rounded-2xl cursor-pointer flex gap-4 items-center group transition-all text-left ${selectedMedication ? 'bg-[#C97B63]/5 border-[#C97B63]' : 'border-[#E8DCCB]/30 bg-white hover:border-[#C97B63]/30'}`}
+                  >
+                    <div className="size-10 bg-[#E8DCCB] rounded-xl flex items-center justify-center text-[#C97B63]">
+                      <span className="material-symbols-outlined text-xl">vaccines</span>
+                    </div>
+                    <div>
+                      <h5 className="text-[11px] font-black uppercase tracking-tight">Medication Care</h5>
+                      <p className="text-[9px] text-[#666666] leading-tight">Medical routines will be continued (+₹374)</p>
                     </div>
                   </div>
                 </div>
@@ -453,7 +540,7 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
             </div>
 
             {/* Price Estimator (Right 4 Cols) */}
-            <div className="lg:col-span-4 sticky top-28 bg-[#FAF7F2] border border-[#E8DCCB] p-6 rounded-[2rem] shadow-xl text-left space-y-6">
+            <div className="lg:col-span-4 sticky top-28 bg-[#FAF7F2] border border-[#E8DCCB] p-6 rounded-[2rem] shadow-xl text-left space-y-5">
               <div>
                 <span className="text-[9px] font-black tracking-widest text-[#8B6B4A] uppercase block">Selected Suite Cabin</span>
                 <h4 className="text-xl font-serif text-[#2B2B2B]">Stay Pricing breakdown</h4>
@@ -471,37 +558,83 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
                     <span className="font-extrabold text-[#2B2B2B] capitalize">{selectedSize}</span>
                   </div>
                 )}
+                {petType === 'cat' && (
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#666666]">Neuter Status:</span>
+                    <span className="font-extrabold text-[#2B2B2B] capitalize">{catNeuter}</span>
+                  </div>
+                )}
                 <div className="flex justify-between items-center">
-                  <span className="text-[#666666]">Resort Rate per Day:</span>
+                  <span className="text-[#666666]">Price per Day:</span>
                   <span className="font-extrabold text-[#2B2B2B]">₹{getPricePerDay().toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-[#666666]">Total Reserved Days:</span>
+                  <span className="text-[#666666]">Total Stays:</span>
                   <span className="font-extrabold text-[#2B2B2B]">{daysCount} day(s)</span>
                 </div>
                 
                 {/* Dynamically shown Extras */}
                 {selectedToys && (
                   <div className="flex justify-between items-center font-bold text-[#8B6B4A]">
-                    <span>🐾 Activ-Toy Bundle:</span>
-                    <span>₹299</span>
+                    <span>🐾 Active-Toy Bundle:</span>
+                    <span>₹186</span>
+                  </div>
+                )}
+                {selectedMedication && (
+                  <div className="flex justify-between items-center font-bold text-[#C97B63]">
+                    <span>💊 Medication Care:</span>
+                    <span>₹374</span>
                   </div>
                 )}
               </div>
 
-              {/* Subtotal, Tax, Final */}
-              <div className="space-y-2 text-xs">
-                <div className="flex justify-between text-[#666666]">
-                  <span>Subtotal Stay:</span>
-                  <span>₹{getSubtotal().toLocaleString()}</span>
+              {/* Dynamic Rewards & Benefits Based on Date count */}
+              {daysCount > 0 && (
+                <div className="space-y-2 border-b border-[#8B6B4A]/15 pb-4">
+                  <div className="text-[9px] font-black uppercase text-[#666666] tracking-widest">Complementary Milestone Benefits</div>
+                  <div className="space-y-1.5 text-[10px] text-[#2B2B2B]/80">
+                    <div className="flex items-center gap-1.5">
+                      <span className={`material-symbols-outlined text-xs ${daysCount >= 4 ? 'text-[#14d220] font-black' : 'text-gray-350'}`}>
+                        {daysCount >= 4 ? 'check_box' : 'check_box_outline_blank'}
+                      </span>
+                      <span className={daysCount >= 4 ? 'font-black text-[#14d220]' : ''}>4+ Days: Furry Fresh Free</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <span className={`material-symbols-outlined text-xs ${daysCount >= 8 ? 'text-[#14d220] font-black' : 'text-gray-350'}`}>
+                        {daysCount >= 8 ? 'check_box' : 'check_box_outline_blank'}
+                      </span>
+                      <span className={daysCount >= 8 ? 'font-black text-[#14d220]' : ''}>8+ Days: Special Package Free</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <span className={`material-symbols-outlined text-xs ${daysCount >= 15 ? 'text-[#14d220] font-black' : 'text-gray-350'}`}>
+                        {daysCount >= 15 ? 'check_box' : 'check_box_outline_blank'}
+                      </span>
+                      <span className={daysCount >= 15 ? 'font-black text-[#14d220]' : ''}>15+ Days: Full Package Free</span>
+                    </div>
+                  </div>
+
+                  {daysCount >= 4 && (
+                    <div className="bg-[#14d220]/10 border border-[#14d220]/20 rounded-xl p-3 mt-2">
+                      <p className="text-[9px] font-black uppercase text-[#14d220] flex items-center gap-1 leading-none">
+                        <span className="material-symbols-outlined text-[13px]">redeem</span>
+                        REWARD EARNED!
+                      </p>
+                      <p className="text-[10px] text-[#2B2B2B] font-bold mt-1">
+                        {daysCount >= 15 
+                          ? '🎉 Comfort Full Package Treatment Included Free!' 
+                          : daysCount >= 8 
+                            ? '🎉 Special Package Grooming Treatment Included Free!' 
+                            : '🎉 Furry Fresh Grooming Refresh Included Free!'}
+                      </p>
+                    </div>
+                  )}
                 </div>
-                <div className="flex justify-between text-[#666666]">
-                  <span>CGST + SGST (18%):</span>
-                  <span>₹{getTax().toLocaleString()}</span>
-                </div>
-                
-                <div className="flex justify-between items-end pt-3 border-t border-[#8B6B4A]/10 font-sans">
-                  <span className="text-[10px] font-black uppercase tracking-wider text-[#666666] mb-1">Stay Total</span>
+              )}
+
+              {/* Subtotal & Total Payment */}
+              <div className="space-y-4 text-xs pt-1">
+                <div className="flex justify-between items-end font-sans">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-[#666666] mb-1">Stay Total (No GST)</span>
                   <div className="text-right">
                     <span className="text-2xl font-black text-[#2B2B2B] tracking-tighter">
                       ₹{getTotal().toLocaleString()}
@@ -709,6 +842,63 @@ const BoardingPage: React.FC<BoardingPageProps> = ({ addToCart }) => {
                 Customize Comfort Stays
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: TERMS & CONDITIONS */}
+      <section className="py-20 px-6 bg-[#FAF7F2] border-t border-[#8B6B4A]/10">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="text-[10px] font-black uppercase tracking-widest text-[#C97B63]">Mandatory Guidelines</span>
+            <h2 className="text-3xl md:text-4xl font-serif mt-2">Boarding Terms & Conditions</h2>
+            <p className="text-xs text-[#666666] font-bold max-w-sm mx-auto mt-4 font-sans">For the safety and wellness of all guest pets, please review our mandatory host policies.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Medical Issues & History",
+                desc: "Full medical records, ongoing conditions, and medicine prescriptions must be declared at check-in.",
+                icon: "medical_information"
+              },
+              {
+                title: "Tick Tablet Protocol",
+                desc: "Active oral tick & flea preventative pill must be administered to the pet prior to boarding space entry.",
+                icon: "pest_control"
+              },
+              {
+                title: "Daily Habits & Routine",
+                desc: "Daily feed timing, nap patterns, walk preferences, and custom commands must be noted to maintain regular rhythm.",
+                icon: "event_note"
+              },
+              {
+                title: "Temperament & Aggression",
+                desc: "Clear aggression thresholds or reactive triggers (human or animal) must be disclosed prior to booking approval.",
+                icon: "warning"
+              },
+              {
+                title: "Separate Care Requests",
+                desc: "If your pet requires absolute separation, zero external play, or solitary quarters, please check this in your booking request.",
+                icon: "door_front"
+              },
+              {
+                title: "Updates Group Creation",
+                desc: "A dedicated WhatsApp update group will be established for each stay to deliver feeding, walking, and care photos.",
+                icon: "chat"
+              }
+            ].map((term, i) => (
+              <div 
+                key={i}
+                className="bg-white border border-[#E8DCCB] hover:border-[#8B6B4A]/30 p-6 rounded-2xl text-left space-y-3 transition-colors shadow-sm"
+              >
+                <div className="size-10 rounded-xl bg-[#FAF7F2] border border-[#E8DCCB] text-[#8B6B4A] flex items-center justify-center">
+                  <span className="material-symbols-outlined text-lg">{term.icon}</span>
+                </div>
+                <h4 className="text-xs font-black uppercase tracking-wider text-[#2B2B2B]">{term.title}</h4>
+                <p className="text-[11px] text-[#666666] font-semibold leading-relaxed">{term.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

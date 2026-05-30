@@ -81,21 +81,21 @@ const Services: React.FC<ServicesProps> = ({ onDetailClick, setActivePage }) => 
 
   const services: ServiceData[] = [
     {
-      title: "Sanitary & Maintenance",
-      description: "Combined hygiene trim, nail clipping, and more.",
-      longDescription: "Our most popular quick care package. Combines essential hygiene trimming with nail clipping, ear cleaning, and paw pad maintenance for a complete refresh.",
-      price: "₹399",
-      originalPrice: "₹499",
+      title: "Sanitary Clipping & Waterless Bath",
+      description: "Combined hygiene trim, nail clipping, and waterless bath.",
+      longDescription: "Our most popular quick care package. Combines essential sanitary clipping and hygiene trimming with nail clipping, ear cleaning, paw pad maintenance, and a refreshing waterless bath.",
+      price: "₹499",
+      originalPrice: "₹624",
       icon: "sanitizer",
       image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=800&auto=format&fit=crop",
-      benefits: ["Hygiene Trim", "Nail Clipping", "Ear Cleaning", "Paw Pad Trim", "Eye Cleaning"]
+      benefits: ["Sanitary Clipping", "Waterless Bath", "Nail Clipping", "Ear Cleaning", "Paw Pad Trim"]
     },
     {
       title: "Furry Fresh",
       description: "Essential hygiene care for a clean and happy pet.",
       longDescription: "Our basic hygiene package designed for regular maintenance. Focuses on deep cleansing and essential hygiene without the full styling. Perfect for active pets who need a quick refresh.",
-      price: "₹499",
-      originalPrice: "₹649",
+      price: "₹624",
+      originalPrice: "₹812",
       icon: "soap",
       image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=800&auto=format&fit=crop",
       benefits: ["Bath with Shampoo & Conditioner", "Professional Blow Dry", "Combing & Brushing", "Ear Cleaning", "Eye Cleaning"],
@@ -105,8 +105,8 @@ const Services: React.FC<ServicesProps> = ({ onDetailClick, setActivePage }) => 
       title: "Special Package",
       description: "Enhanced care with extra hygiene and dental focus.",
       longDescription: "A step up from basic care, adding essential dental and paw hygiene. This package ensures your pet's breath is fresh and their paws are protected and trimmed.",
-      price: "₹699",
-      originalPrice: "₹899",
+      price: "₹874",
+      originalPrice: "₹1124",
       icon: "star",
       image: "https://images.unsplash.com/photo-1585846416120-3a7354ed7d65?q=80&w=800&auto=format&fit=crop",
       benefits: ["Bath with Shampoo & Conditioner", "Professional Blow Dry", "Combing & Brushing", "Ear Cleaning", "Eye Cleaning", "Mouth Spray", "Teeth Brushing", "Paws Trimming"]
@@ -115,8 +115,8 @@ const Services: React.FC<ServicesProps> = ({ onDetailClick, setActivePage }) => 
       title: "Style Your Pet",
       description: "Professional full body trimming and face styling.",
       longDescription: "Our signature styling package. Includes a full body trim tailored to your breed's standard or your personal preference, plus meticulous face trimming for that perfect look.",
-      price: "₹1399",
-      originalPrice: "₹1799",
+      price: "₹1749",
+      originalPrice: "₹2249",
       icon: "styler",
       image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=800&auto=format&fit=crop",
       benefits: ["Full Body Trimming", "Face Trimming", "Ear Cleaning (FREE)", "Eye Cleaning (FREE)", "Sanitary Clipping (FREE)", "Combing & Brushing (FREE)", "Mouth Spray (FREE)"]
@@ -125,8 +125,8 @@ const Services: React.FC<ServicesProps> = ({ onDetailClick, setActivePage }) => 
       title: "Full Grooming",
       description: "The ultimate head-to-tail therapeutic experience.",
       longDescription: "Our most comprehensive package merging premium care and full service. We've replaced standard massage with a therapeutic medicated bath to ensure skin health while providing every possible grooming luxury.",
-      price: "₹1999",
-      originalPrice: "₹2599",
+      price: "₹2499",
+      originalPrice: "₹3249",
       icon: "content_cut",
       image: "https://images.unsplash.com/photo-1596272875729-ed2c21d50c46?q=80&w=800&auto=format&fit=crop",
       benefits: ["Bath with Shampoo & Conditioner", "Medicated Bath", "Hair Styling/Trimming", "Sanitary Trim", "Nail Clipping", "Ear Cleaning", "Eye Cleaning", "Paws Massage", "Combing & Brushing", "Deshedding Treatment"]
@@ -135,8 +135,8 @@ const Services: React.FC<ServicesProps> = ({ onDetailClick, setActivePage }) => 
       title: "Paw Relaxation",
       description: "Deep cleaning and relaxing massage for paws.",
       longDescription: "Give your pet's paws the attention they deserve. Includes deep cleaning, gentle trimming of paw pad hair, and a soothing massage with pet-safe balm.",
-      price: "₹99",
-      originalPrice: "₹149",
+      price: "₹124",
+      originalPrice: "₹186",
       icon: "pets",
       image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=800&auto=format&fit=crop",
       benefits: ["Deep Paw Cleaning", "Paw Pad Trimming", "Soothing Massage", "Moisturizing Balm"]

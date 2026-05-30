@@ -56,10 +56,10 @@ const BoardingPopup: React.FC<BoardingPopupProps> = ({ isOpen, onClose, onSeeNow
             <div className="p-8 space-y-4 text-center">
               <div className="space-y-2">
                 <h3 className="text-2xl md:text-3xl font-serif text-[#111811] tracking-tight">
-                  Luxury Pet Boarding is Now Open! 🐾
+                  Comfortable Pet Boarding is Now Open! 🐾
                 </h3>
                 <p className="text-xs text-[#111811]/60 font-semibold leading-relaxed">
-                  Treat your beloved cat or dog to a ultimate 5-star resort experience! Complete with temperature-controlled suites, specialized care, premium activities, and daily photo/video updates.
+                  Enjoy peace of mind while traveling! We offer safe, clean, and highly comfortable premium boarding with individual suites, professional caregivers, dynamic daily exercise, and real-time updates.
                 </p>
               </div>
 

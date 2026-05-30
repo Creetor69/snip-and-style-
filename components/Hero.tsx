@@ -245,8 +245,8 @@ const Hero: React.FC<HeroProps> = ({ onServiceClick, onBoardingClick }) => {
                     <span className="text-[8px] font-black uppercase tracking-widest text-white bg-[#8B6B4A] px-1.5 py-0.5 rounded leading-none">NEW OPENING</span>
                     <span className="size-1.5 bg-[#14d220] rounded-full animate-pulse" />
                   </div>
-                  <h4 className="text-[11px] font-black tracking-tight text-[#111811] mt-1">Luxury Pet Boarding is now open! Check it out 🐾</h4>
-                  <p className="text-[9px] text-[#111811]/60 font-semibold leading-none mt-0.5">Explore 5-star suites and reserve your pet's vacation</p>
+                  <h4 className="text-[11px] font-black tracking-tight text-[#111811] mt-1">Comfortable Pet Boarding is now open! Check it out 🐾</h4>
+                  <p className="text-[9px] text-[#111811]/60 font-semibold leading-none mt-0.5">Explore cozy suite spaces and reserve your pet's stay</p>
                 </div>
               </div>
               <div className="size-7 rounded-full bg-white text-[#111811] flex items-center justify-center shrink-0 border border-black/5 shadow group-hover:bg-[#FF8200] group-hover:text-white transition-all">
